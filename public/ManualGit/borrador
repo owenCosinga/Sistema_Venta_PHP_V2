@@ -1,0 +1,32 @@
+        //recuperar el nuevo id
+		$snt=$cnx->prepare("select max(idusuario) as nuevoid from usuario");
+		$snt->execute();
+
+        $fila=$snt->fetch();
+
+		$nuevoid=$fila['nuevoid'];
+
+		$newid=json_encode($nuevoid);
+
+		$num_elemento=0;
+
+		$sw=true;
+
+		while ($num_elemento < count($this->permisos)){
+
+			$cnx=Conexion::conectarMySql();
+			
+			$newpermiso=json_encode($this->permisos[$num_elemento]);
+
+            $sql_detalle="insert into usuario_permiso(idusuario, idpermiso) values(:idusuario, :idpermiso)";
+
+		   $snt=$cnx->prepare($sql_detalle) or $sw=false;
+
+		   $snt->bindValue(":idusuario", $newid);
+		   $snt->bindValue(":idpermiso", $newpermiso);
+
+		   $snt->execute();
+		   $num_elemento=$num_elemento+1;
+
+		}
+		return $sw;

@@ -1,0 +1,153 @@
+COMANDOS DEL CURSO GIT
+
+*primero nos acercamos al proyecto donde se estan ubicando los archivos y carpetas
+
+
+
+*para comenzar el proyecto o hacer un seguimiento ojo(solo se usa una vez ocasionalmente cuando se comienza el proyecto) 
+///////// git init
+
+
+
+*para ver si hay archivos en el proyecto se usa osea dentro de las carpetas y se
+vee si los archivos estan en seguimiento ojo(tambien se vee el estado de los archivos)
+
+los simbolos del estado de los archivos son los siguientes
+
+?? => no esta en seguimiento // en visual code => U significa no esta en seguimiento
+A => esta en seguimiento y se encuentra en area de ensayo
+  => si el archivo se encuentra vacio significa que se envio al repositorio local
+M => si el archivo ha sido modificado y nose encuentra guardada en el repositorio local
+///////// git status -s
+
+
+*para agregar a un solo archivo a seguimiento o a la sala de ensayo se usa el comando
+////////// git add (nombre del archivo)
+
+*para agregar a todos los archivos del proyecto se usa el comando
+////////// git add .
+
+
+*para guardar una copia de respaldo o un avanze del archivo se usa el comando /otra defi mandarlo al repositorio local/
+//git commit -m "descripcion del archivo(pon algo)"
+
+
+*cuando vamos a hacer una nueva modificacion o cambio al archivo primer tenemos que mandarlo al area de ensayo para que
+que nuevamente pase a observacion y no lo tome como un archivo fantasma
+
+
+
+*para ver el listado de todas las copias de respaldo y su descripcion se usa el comando
+/////// git log --oneline
+
+
+
+*para hacer que el archivo este desde el comienzo de la iniciacion se usa el comando (osea te restaura al comienzo)
+/////// git reset --hard (codigo de la copia donde se comenzara la iniciacion)
+para saber el codigo de las copias usa el comando git log --oneline
+
+
+
+*para hacer add y el commit en un solo comando se usa el comando
+/////////// git commit -am ("descripcion del avanze")
+
+
+
+
+*para editar las copias de respaldo o archivos del commit se usa el comando
+///////// git commit --amend
+al entrar dentro de la consola editar usar los siguientes comandos
+- :i para editar el archivo
+- la tecla esc para terminar de editar
+- :wq para cerrar la consola de editar y dirigirnos ala consola git
+
+
+
+
+*para subir un nuevo repositorio nos vamos a la pagina github y nos logeamos
+y nos vamos a la opcion nuevo repositorio y llenamos los form
+y al entrar al 2 form nos vamos a la segunda opcion y resaltamos y copiamos la alternativa:
+////// git remote add origin https://github.com/owenCosinga/dsdsd.git
+luego de hacer eso nos vamos a la consola de git y lo pegamos y listo
+el repositorio ha sido subido a github.
+en caso no se llegara a subir el repositorio usar el siguiente comando
+///// git push origin master
+nos dirigira a un pequeño form para logearnos y asi subir el repositorio
+
+
+
+*cuando hacemos modficaciones en los repositorios de github y queremos que esos cambios 
+tambien ya esten puestos en nuestro proyecto local usamos el comando en la consola GIT
+////////// git pull https://github.com/owenCosinga/empresa_A_V1(esto es el link del repositorio que hemos hecho cambios)
+ 
+*cuando pensamos que nuestro proyecto esta terminado o que la version esta funcionando y disponible
+para proximas versiones o cambios. es igual que los videojuegos ambos tienen versiones y
+egso son mejoras a lo largo del tiempo
+se usa el siguiente comando
+
+////// git tag (nombre de la version) -m ("descripcion de la version")
+luego el siguiente comando
+///// git push --tags
+
+
+
+*en caso de que ocurra un accidente como eliminarlo o perderlo podemos usar el comando
+git clone que nos permite clonar el proyecto y restaurarlo tal y como estaba antes del acidente
+primero irse al github y buscar el repositorio donde se guardo la copia para restaurar
+y nos vamos al boton code donde nos dara varias opciones como recuperar por https e irnos 
+por a la consola de git y ponerlo en nuestra carpeta deseada e insertar el siguiente comando
+////// git clone https://github.com/owenCosinga/empresa_A_V1.git(este es https del repositorio que queremos recuperar)
+
+otra opcion es recuperar por descarga del proyecto por medio de descarga del archivo ZIP
+
+
+
+
+ /* RAMAS | BRANCH(tambien llamado) */
+
+para saber mas sobre el tema visita google o youtube por el canal de pildorasInformaticas
+
+
+*para crear una rama se usa el siguiente comando
+////// git branch (nombre dela rama)
+
+
+*para ver la lista de ramas y ver la rama en uso se usa el comando
+//// git branch
+
+
+
+*para cambiar de rama se usa el comando
+////// git checkout (nombre de la rama de cambio)
+
+
+
+*cuando una rama te funcione bien y se acomode a la funcionalidad
+y te gustaria combinar la rama master con la rama segundaria que ha funcionado se usa
+el siguiente comando
+/primero tiene que estar en uso la rama master para hacer la combinacion
+/ahora el siguiente comando
+////////// git merge (nombre de la rama que quieres combinar)
+
+//en caso se genere conflicto y les salga mensajes como <<<<<<Head y otros
+se da por problemas de internos y para resolver se usa los siguientes comandos
+//////// git add (nombre del archivo si es uno) o si son todos usa el .
+luego ///////// git commit
+si les sale una ventana con codigos inserte el comando // :wq para cerrar la ventana y 
+regresar a la terminal
+
+
+
+*para eliminar una rama se usa el siguiente comando
+//////// git branch -d (nombre de la rama)
+
+
+
+
+
+
+
+
+
+
+
