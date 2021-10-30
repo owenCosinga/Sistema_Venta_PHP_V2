@@ -39,6 +39,11 @@ Class Categoria{
         return ejecutarConsulta($sql); 
     }
 
+    public function select(){
+        $sql="SELECT * FROM categoria WHERE estado=1";
+        return ejecutarConsulta($sql); 
+    }
+
 }
 
 ?>
