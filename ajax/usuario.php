@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../models/Usuario.php';
 
 $usuario=new Usuario();
@@ -93,29 +93,31 @@ switch($_GET['op']){
         break;     
         
         case 'permisos':
-        //obtener todos los permisos de la tabla permisos
-        require_once "../models/Permiso.php";
-        $permiso = new Permiso();
-        $rspta=$permiso->listar();
+            //Obtenemos todos los permisos de la tabla permisos
+            require_once "../models/Permiso.php";
+            $permiso = new Permiso();
+            $rspta = $permiso->listar();
+    
+            //Obtener los permisos asignados al usuario
+            $id=$_GET['id'];
+            $marcados = $usuario->listarmarcados($id);
+            //Declaramos el array para almacenar todos los permisos marcados
+            $valores=array();
+    
+            //Almacenar los permisos asignados al usuario en el array
+            while ($per = $marcados->fetch_object())
+                {
+                    array_push($valores, $per->idpermiso);
+                }
+    
+            //Mostramos la lista de permisos en la vista y si están o no marcados
+            while ($reg = $rspta->fetch_object())
+                    {
+                        $sw=in_array($reg->id,$valores)?'checked':'';
+                        echo '<li> <input type="checkbox" '.$sw.'  name="permiso[]" value="'.$reg->id.'">'.$reg->nombre.'</li>';
+                    }
+        break;
 
-        //obtener los permisos asignados al usuario
-        $id=$_GET["id"];
-        $marcados=$usuario->listarmarcados($id);
-        //declaramos el array para almacenar todos los permisos marcados
-        $valores=array();
-
-        //almacenar los permisos asignados al usuario en el array
-        while ($per=$marcados->fetch_object()) {
-                array_push($valores,$per->id);
-        }
-
-        //mostrar la lista de los permisos en la vista y si estan o no marcados
-        while($reg=$rspta->fetch_object()){
-            $sw=in_array($reg->id, $valores)?'checked':'';
-            echo '<li><input type="checkbox" '.$sw.' name="permiso[]" value="'.$reg->id.'">'.$reg->nombre.'</li>';
-        }
-
-        break; 
 
         case 'verificar':
 
@@ -132,10 +134,27 @@ switch($_GET['op']){
             if (isset($fetch))
             {
                 //Declaramos las variables de sesión
-                $_SESSION['idusuario']=$fetch->idusuario;
+                $_SESSION['id']=$fetch->id;
                 $_SESSION['nombre']=$fetch->nombre;
                 $_SESSION['imagen']=$fetch->imagen;
                 $_SESSION['login']=$fetch->login;
+
+                //obtenemos los permisos del usuario
+                $marcados = $usuario->listarmarcados($fetch->id);
+                //declaramos el array para almacenar todos los permisos marcados
+                $valores=array();
+                //almacenar los permisos marcados en el array
+                while($per = $marcados->fetch_object()){
+                    array_push($valores,$per->idpermiso);
+                }
+                //determinar los accesos del usuario
+                in_array(1, $valores)?$_SESSION['escritorio']=1:$_SESSION['escritorio']=0;
+                in_array(2, $valores)?$_SESSION['almacen']=1:$_SESSION['almacen']=0;
+                in_array(3, $valores)?$_SESSION['compras']=1:$_SESSION['compras']=0;
+                in_array(4, $valores)?$_SESSION['ventas']=1:$_SESSION['ventas']=0;
+                in_array(5, $valores)?$_SESSION['acceso']=1:$_SESSION['acceso']=0;
+                in_array(6, $valores)?$_SESSION['consultac']=1:$_SESSION['consultac']=0;
+                in_array(7, $valores)?$_SESSION['consultav']=1:$_SESSION['consultav']=0;
             }    
             echo json_encode($fetch);
         break;     

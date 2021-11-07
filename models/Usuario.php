@@ -67,14 +67,14 @@ Class Usuario{
         return ejecutarConsulta($sql); 
     }
 
-    public function listarmarcados($id){
-        $sql="SELECT * FROM usuario_permiso WHERE idusuario='$id'";
-        return ejecutarConsulta($sql); 
-    }
-
     public function verificar($login, $clave){
         $sql="SELECT id, nombre, tipo_documento, num_documento, telefono, email, cargo, imagen, login 
         FROM usuario WHERE login='$login' AND clave='$clave' AND estado='1'";
+        return ejecutarConsulta($sql); 
+    }
+
+        public function listarmarcados($id){
+        $sql="SELECT * FROM usuario_permiso WHERE idusuario='$id'";
         return ejecutarConsulta($sql); 
     }
 

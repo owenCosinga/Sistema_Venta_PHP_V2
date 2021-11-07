@@ -1,4 +1,15 @@
-<?php require 'header.php'; ?>
+<?php 
+//activamos el almacenamiento en el buffer
+ob_start();
+session_start();
+
+if(!isset($_SESSION["nombre"])){
+    header("Location: login.html");
+}else{
+require 'header.php'; 
+//verificar si el usuario tiene permiso para acceder a almacen
+if($_SESSION['ventas']==1){
+?>
     <!--Contenido-->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -91,6 +102,17 @@
 
     </div><!-- /.content-wrapper -->
 
-    <?php require 'footer.php'; ?>
+    <?php 
+    }
+    else{
+        require 'noacceso.php';
+    }
+    require 'footer.php'; 
+    ?>
 
     <script type="text/javascript" src="scripts/cliente.js"></script>
+
+    <?php }
+    //liberar el espacio del buffer
+    ob_end_flush();
+    ?>
