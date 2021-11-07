@@ -157,7 +157,16 @@ switch($_GET['op']){
                 in_array(7, $valores)?$_SESSION['consultav']=1:$_SESSION['consultav']=0;
             }    
             echo json_encode($fetch);
-        break;     
+        break;    
+        
+        case 'salir':
+        //limpiar las variables del usuario
+        session_unset();
+        //destruir la session
+        session_destroy();
+        //redireccionar al login
+        header("Location: ../index.php");
+        break;    
 
 }
 

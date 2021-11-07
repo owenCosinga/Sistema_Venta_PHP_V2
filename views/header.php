@@ -53,16 +53,20 @@ session_start();
                 <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
                 
+
+                
+                <!-- ASIGNAR VALORES DEL USUARIO COMO LA IMAGEN Y NOMBRE DE SESSION INTEGRADO -->
+
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="../public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                    <span class="hidden-xs">Juan Carlos Arcila</span>
+                    <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="user-image" alt="User Image">
+                    <span class="hidden-xs"><?php echo $_SESSION['nombre']; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                        <img src="../public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
                         <p>
                         www.incanatoit.com - Desarrollando Software
                         <small>www.youtube.com/jcarlosad7</small>
@@ -73,7 +77,7 @@ session_start();
                     <li class="user-footer">
                         
                         <div class="pull-right">
-                        <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                        <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar</a>
                         </div>
                     </li>
                     </ul>
