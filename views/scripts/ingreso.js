@@ -39,6 +39,7 @@ function mostrarform(flag){
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
         $("#btnagregar").hide();
+        listarArticulos();
     }else{
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
@@ -68,6 +69,30 @@ function listar(){
         ],
         "ajax": {
             url: '../ajax/ingreso.php?op=listar',
+            type: "get",
+            dataType: "json",
+            error: function(e){
+                console.log(e.responseText);
+            }
+        },
+
+        "bDestroy": true,
+        "iDisplayLength": 5, //paginacion
+        "order": [[ 0, "desc" ]] //ordenar columna y orden      
+    }).DataTable();
+}
+
+function listarArticulos(){
+
+    tabla=$('#tblarticulos').dataTable({
+        "aProcessing": true, //activamos el procesamiento del datatables
+        "aServerSide": true, //paginacion y filtrado realizados por el servidor
+        dom: 'Bfrtip', //definimos los elementos del control de tabla
+        buttons: [
+
+        ],
+        "ajax": {
+            url: '../ajax/ingreso.php?op=listarArticulos',
             type: "get",
             dataType: "json",
             error: function(e){

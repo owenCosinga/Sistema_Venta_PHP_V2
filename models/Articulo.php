@@ -39,6 +39,12 @@ Class Articulo{
         return ejecutarConsulta($sql); 
     }
 
+    public function listarActivos(){
+        $sql="SELECT a.id, a.idcategoria, c.nombre as categoria, a.codigo, a.nombre, a.stock, a.descripcion, a.imagen, a.estado FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.id 
+        WHERE a.estado='1'";
+        return ejecutarConsulta($sql); 
+    }
+
 }
 
 ?>
