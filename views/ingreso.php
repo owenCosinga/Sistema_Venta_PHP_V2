@@ -38,7 +38,9 @@ if($_SESSION['compras']==1){
                             <th>Total Compra</th>
                             <th>Estado</th>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                
+                            </tbody>
                             <tfoot>
                             <th>Opciones</th>
                             <th>Fecha</th>
